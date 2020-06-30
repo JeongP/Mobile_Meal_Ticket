@@ -1,0 +1,73 @@
+<section class="flat-signin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="wrap-sign-in center">
+          <h4>Sign Up</h4>
+          <div class="form-sign-in">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <!-- <form action="#" method="post" accept-charset="utf-8"> -->
+              <div>
+                <div class="form-box">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                  <!-- <label for="email">
+                    Username or email address *
+                  </label>
+                  <input type="text" id="email" name="email" > -->
+                </div>
+                <!-- /.form-box -->
+                <div class="form-box">
+                  <%= f.label :username %><br />
+                  <%= f.text_field :username %>
+                </div>
+
+                <div class="form-box">
+                  <%= f.label :user_type %><br />
+                  <%= f.select :user_type, {"일반 사용자": "customer", "판매자": "seller"}, {}, class: "form-control" %>
+                </div>
+
+                <!-- 현재비밀번호 -->
+                <div class="form-box">
+                  <%= f.label :current_password %>
+                  <%= f.password_field :current_password, autocomplete: "off" %>
+                </div>
+
+                <!-- 변경할 비밀번호 -->
+                <div class="form-box">
+                  <%= f.label :password %>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %><br />
+                  <%= f.password_field :password, autocomplete: "off" %>
+                </div>
+
+                <div class="form-box">
+                  <%= f.label :password_confirmation %><br />
+                  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                </div>
+
+                <!-- /.form-box -->
+                <div class="btn-submit">
+                  <%= f.button "정보수정완료", class: "bg-black register" %>
+                  <!-- <button class="bg-black register" type="button">REGISTER</button> -->
+                </div>
+                <!-- <a href="#" class="create-account" title="">OR SIGN IN</a> -->
+              </div>
+            <!-- </form> -->
+            <% end %>
+            <div class="btn-submit bg-black register">
+              <%= button_to "회원탈퇴", registration_path(resource_name), style: "background: none", data: { confirm: "정말 탈퇴하시겠습니까?" }, method: :delete %>
+              <!-- <button class="bg-black register" type="button">REGISTER</button> -->
+            </div>
+            <%= link_to "Back", :back %>
+          </div>
+          <!-- /.form-sign-in -->
+        </div>
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>

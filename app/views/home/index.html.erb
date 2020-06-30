@@ -1,0 +1,122 @@
+<%#= render 'tshared/tp-banner' %>
+
+<!-- 대표강의 -->
+<section class="flat-imagebox style3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="top-title center">
+          줄 서서 식권 구매하지 말고, <br> 모바일로 간편하게 구매하세요.
+        </div>
+        <!-- /.top-title -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+
+
+
+<!-- index_1 -->
+    <div class="row">
+      <% if user_signed_in? %>
+      <div class="col-lg-4">
+        <div class="iconbox center style1 v5 border-radius-5">
+          <div class="box-header">
+            <div class="icon">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="70px" height="70px" viewBox="0 0 80 80" xml:space="preserve" fill="transparent">
+                <circle class="circle is-inner" cx="40" cy="40" r="36"></circle>
+                <circle class="circle is-outer" cx="40" cy="40" r="36"></circle>
+              </svg>
+              <span class="ti-settings font-size-30"></span>
+            </div>
+            <div class="box-title">
+              <a href="/home/menu" title="">메 뉴</a>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-content">
+            <a href="/home/menu"><p>이번 주 메뉴를 한 눈에 볼 수 있습니다.</p></a>
+          </div>
+          <!-- /.box-content -->
+        </div>
+        <!-- /.iconbox style1 -->
+      </div>
+      <% else %>
+      <div class="col-lg-4">
+        <div class="iconbox center style1 v5 border-radius-5">
+          <div class="box-header">
+            <div class="icon">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="70px" height="70px" viewBox="0 0 80 80" xml:space="preserve" fill="transparent">
+                <circle class="circle is-inner" cx="40" cy="40" r="36"></circle>
+                <circle class="circle is-outer" cx="40" cy="40" r="36"></circle>
+              </svg>
+              <span class="ti-settings font-size-30"></span>
+            </div>
+            <div class="box-title">
+              <a href="<%= new_user_session_path %>" title="">메 뉴</a>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-content">
+            <a href="<%= new_user_session_path %>"><p>이번 주 메뉴를 한 눈에 볼 수 있습니다.</p></a>
+          </div>
+          <!-- /.box-content -->
+        </div>
+        <!-- /.iconbox style1 -->
+      </div>
+      <% end %>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="iconbox center style1 v5 border-radius-5">
+          <div class="box-header">
+            <div class="icon">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="70px" height="70px" viewBox="0 0 80 80" xml:space="preserve" fill="transparent">
+                <circle class="circle is-inner" cx="40" cy="40" r="36"></circle>
+                <circle class="circle is-outer" cx="40" cy="40" r="36"></circle>
+              </svg>
+              <span class="ti-ruler-pencil font-size-30"></span>
+            </div>
+            <div class="box-title">
+              <a href="/home/ticket" title="">식 권</a>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-content">
+            <a href="/home/ticket"><p>구매한 식권을 사용할 수 있습니다.</p></a>
+          </div>
+          <!-- /.box-content -->
+        </div>
+        <!-- /.iconbox style1 -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="iconbox center style1 v5 border-radius-5">
+          <div class="box-header">
+            <div class="icon">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="70px" height="70px" viewBox="0 0 80 80" xml:space="preserve" fill="transparent">
+                <circle class="circle is-inner" cx="40" cy="40" r="36"></circle>
+                <circle class="circle is-outer" cx="40" cy="40" r="36"></circle>
+              </svg>
+              <span class="ti-ruler-pencil font-size-30"></span>
+            </div>
+            <div class="box-title">
+              <a href="/notes" title="">자유게시판</a>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-content">
+            <a href="/notes"><p>학교 식당에 대해 자유롭게 건의 해주세요.</p></a>
+          </div>
+          <!-- /.box-content -->
+        </div>
+        <!-- /.iconbox style1 -->
+      </div>
+      <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+
+<!-- 대표 후기 -->
+

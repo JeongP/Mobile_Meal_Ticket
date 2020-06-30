@@ -1,0 +1,119 @@
+<!-- index_1 -->
+<div class="row">
+  <% @lectures.sample(2).each do |lec| %>
+  <div class="col-md-4">
+    <div class="imagebox style2 v4 border">
+      <div class="imagebox-image">
+        <%= image_tag lec.image1.url %>
+        <!-- <img src="/images/page/box-7.jpg" alt=""> -->
+      </div>
+      <% if user_signed_in? %>
+      <div class="imagebox-content">
+        <h6>
+          <a href="">MENU</a>
+          <!-- <a href="<%#= lecture_path(lec) %>" title=""><%#= lec.title %></a></h6> -->
+        <p><%= lec.contents %></p>
+        <div class="more-link">
+          <a href="<%= lecture_path(lec) %>" title="">Details</a>
+        </div>
+      </div>
+      <% else %>
+      <div class="imagebox-content">
+        <h6>
+          <a href="<%= new_user_session_path %>" title=""><%= lec.title %></a></h6>
+        <p><%= lec.contents %></p>
+        <div class="more-link">
+          <a href="<%= new_user_session_path %>" title="">Details</a>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <!-- /.imagebox style2 v4 -->
+  </div>
+  <% end %>
+</div>
+
+<!-- 대표후기 -->
+<section class="flat-testimonial">
+  <div class="container">
+    <div class="top-title center">
+      <h2>Hot Class</h2>
+      <div class="top-post">회원들의 추천이 가장 많은 강의들입니다.</div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="testimonial owl-carousel-2 style1 v1 no-border-top">
+          <% @hot_lectures.each do |hot_lecture| %>
+            <%= link_to lecture_path(hot_lecture) do %>
+            <div class="testimonial-item">
+              <div class="avatar">
+                <%= image_tag hot_lecture.image1.url, alt: "" %>
+                <!-- <img src="/images/testimonial/1.jpg" alt=""> -->
+              </div>
+              <blockquote>
+                <span>“</span>
+                <p><%= hot_lecture.contents %></p>
+                <div class="info-author">
+                  <div class="name">
+                    <h4><%= hot_lecture.title %></h4>
+                  </div>
+                  <div class="option">
+                    - <%= Tutor.find(hot_lecture.tutor_id).user.username %>
+                  </div>
+                </div>
+              </blockquote>
+              <!-- /blockquote -->
+            </div>
+            <% end %>
+          <% end %>
+          <!-- /.testimonial-item -->
+        </div>
+
+        <!-- /.testimonial owl-carousel-1 -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+
+
+<div class="container">
+  <br>
+  <div class="form-sign-in">
+      <div>
+        <div class="form-box">
+          <div class="top-title center">
+            <h5><%= @month %> 월 <%= @day %> 일 메뉴</h5>
+          </div>
+
+          <div class="form-sign-in">
+            <%= form_for @buying, :url => {:controller => "buying", :action => "create"}, method: :post do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <div>
+                <div class="form-box">
+                  <%= f.label :shop_id, "식당선택" %>
+                  <%= f.select :shop_id, {"식당선택": 0, "제2기숙사": 1, "남문관": 2, "교직원식당": 3, "학관식당": 4 }, {}, class: "form-control", id: "mySelect", onchange: "myFunc();"%>
+                </div>
+
+                <div class="form-box">
+                  <label for=""><%= @month %> 월 <%= @day %> 일 메뉴</label>
+                  <!-- <p id="demo"></p> -->
+                  <!-- <textarea id="demo" name="name" rows="8" cols="80" placeholder="콩나물근대된장국 &#13;&#10; 코코넛두부치킨까스(닭가슴살:국내산두부:수입산) &#13;&#10; 비빔국수 &#13;&#10; 마늘쫑햄볶음(햄:돈육:국내산) &#13;&#10; 느타리버섯볶음&#13;&#10; 배추김치 &#13;&#10; 그린샐러드/드레싱 요구르트" disabled></textarea> -->
+                  <textarea id="demo" name="name" rows="8" cols="80" placeholder="식당을 선택하세요." disabled></textarea>
+                </div>
+
+                <!-- <div class="form-box">
+                  <label for="">금액: 4200원</label><br>
+                </div> -->
+
+              </div>
+            <!-- </form> -->
+            <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

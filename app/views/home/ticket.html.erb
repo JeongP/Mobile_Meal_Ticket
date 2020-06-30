@@ -1,0 +1,45 @@
+<section class="flat-tabs style1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="flat-title">
+          <h3>보유 식권</h3>
+          <p class="sub-title">Gola Gola Amoogona Gola<br />
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tab-about style2 v1">
+          <ul class="tab-list-about">
+            <% @shops.all.each do |shop| %>
+              <% ticket = Buying.where(user_id: current_user.id, shop_id: shop.id, use: true) %>
+            <li class="tab-item">
+              <div class="box-header background no-border">
+                <div class="icon">
+                  <span class="ti-ruler-pencil"></span>
+                </div>
+                <div class="box-title">
+                  <a href="<%= home_path(shop) %>"><h6><%= shop.name %></h6></a>
+                  (<%= ticket.count %>장)
+                </div>
+              </div>
+            </li>
+            <% end %>
+            <!-- /.tab-item -->
+          </ul>
+        </div>
+        <!-- /.tab-about style1 -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+
+  <div class="tab-about style2 v1">
+    <button class="line-black base border-radius-23" onclick="location.href = '/home/buy'">식권 구매하러 가기</button>
+  </div>
+  <%# end %>
+  <!-- /.container -->
+</section>

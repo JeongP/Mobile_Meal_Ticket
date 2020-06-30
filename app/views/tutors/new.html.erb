@@ -1,0 +1,63 @@
+<section class="flat-signin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="wrap-sign-in center">
+          <h4>튜터 등록</h4>
+          <!-- <div class="form-sign-in">
+            <form action="#" method="post" accept-charset="utf-8">
+              <div>
+                <div class="form-box">
+                  <label for="email">
+                    Username or email address *
+                  </label>
+                  <input type="text" id="email" name="email" >
+                </div>
+                <div class="form-box">
+                  <label for="password">
+                    Password *
+                  </label>
+                  <input type="password" id="password" name="password" >
+                </div>
+                <div class="btn-submit">
+                  <button class="bg-black register" type="button">REGISTER</button>
+                </div>
+                <a href="#" class="create-account" title="">OR SIGN IN</a>
+              </div>
+            </form>
+          </div> -->
+
+          <div class="form-sign-in">
+            <%= form_for @tutor, url: {action: "create"} do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+            <!-- <form action="#" method="post" accept-charset="utf-8"> -->
+              <div>
+                <div class="form-box">
+                  <%= f.label :phone, "휴대폰번호" %>
+                  <%= f.text_field :phone %>
+                </div>
+                <!-- /.form-box -->
+                <div class="form-box">
+                  <%= f.label :image1, "대표사진등록" %>
+                  <%= f.file_field :image1 %>
+                </div>
+                <!-- /.form-box -->
+                <div class="btn-submit">
+                  <%= f.button "등록완료", class: "bg-black registe" %>
+                  <!-- <button class="bg-black register" type="button">REGISTER</button> -->
+                </div>
+                <!-- <a href="#" class="create-account" title="">OR SIGN IN</a> -->
+              </div>
+            <!-- </form> -->
+            <% end %>
+          </div>
+          <!-- /.form-sign-in -->
+        </div>
+        <!-- /.wrap-sign-in -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>

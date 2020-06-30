@@ -1,0 +1,158 @@
+ <section class="flat-about style1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tab-about style1">
+          <ul class="tab-list-about">
+            <li class="active">Perfect Design</li>
+            <!-- <li>Code Quality</li>
+            <li>Customizability</li>
+            <li>Free Support</li> -->
+          </ul>
+          <!-- /.tab-list style1 -->
+          <div class="content-tab">
+            <div class="content-inner overflow">
+              <div class="one-half">
+                <div class="image-tabs">
+                  <%= image_tag @lecture.image1.url, class: "border-radius-5" %>
+                  <!-- <img class="border-radius-5" src="/images/page/video-1.jpg" alt=""> -->
+                </div>
+              </div>
+              <!-- /.one-half -->
+              <div class="one-half">
+                <div class="text-tabs">
+                  <br>
+
+                  <div class="text-content">
+                    <p>위치 : <%= @lecture.location %></p>
+                    <p>요일 : <%= @lecture.class_date %></p>
+                    <p>수업시간 : <%= @lecture.possible_time %></p>
+                    <p>시간당 가격 : <%= @lecture.price %></p>
+                    <p>총 가능 수업횟수: <%= @lecture.total_class_num %></p>
+                    <p>selectBox로 수업횟수 정하기</p>
+                    <% if current_user.is_like? (@lecture) %>
+                      <%= form_for Like.new, url: {controller: "likes", action: "like_toggle"} do |f| %>
+                        <%= f.button " 추천", class: "icon_heart" %>
+                        <p>총 <strong><%= @lecture.likes.count %> </strong>명이 좋아합니다.</p>
+                      <% end %>
+                    <% else %>
+                      <%= form_for Like.new, url: {controller: "likes", action: "like_toggle"} do |f| %>
+                        <%= f.button "추천", class: "icon_heart_alt"  %>
+                        <p>총 <strong><%= @lecture.likes.count %> </strong>명이 좋아합니다.</p>
+                      <% end %>
+                    <% end %>
+                    <div class="read-more">
+                      <%= link_to "수업신청", user_lecture_listens_path(lecture_id: @lecture.id), method: :post, data: {confirm: "정말로 신청하시겠습니까?"} %>
+                      <%= link_to "찜하기", user_lecture_jjims_path(lecture_id: @lecture.id), method: :post %>
+
+                    </div>
+                  </div>
+                  <!-- /.text-content -->
+                </div>
+                <!-- /.text-tabs -->
+              </div>
+              <!-- /.one-half -->
+            </div>
+          </div>
+          <!-- /.content-tab -->
+        </div>
+        <!-- /.tab-about style1 -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+
+<section class="flat-tabs background">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <div class="tab-about style2">
+          <!-- /.tab-list-about -->
+          <div class="content-tab">
+            <div class="content-inner overflow">
+              <div class="one-half">
+                <div class="text-tabs">
+                  <h5><%= @lecture.title %></h5>
+                  <div class="text-content">
+                    <p><%= @lecture.contents %></p>
+                  </div>
+                </div>
+                <!-- /.text-tabs -->
+              </div>
+              <!-- /.one-half -->
+              <div class="one-half">
+                <ul class="padding-left-100">
+                  <li><i class="fa fa-check color-default" aria-hidden="true"></i>Fully responsive so content looks great</li>
+                  <li><i class="fa fa-check color-default" aria-hidden="true"></i>Awesome sliders to showcase content</li>
+                  <li><i class="fa fa-check color-default" aria-hidden="true"></i>Advanced theme options panel</li>
+                  <li><i class="fa fa-check color-default" aria-hidden="true"></i>Amazing shortcodes loaded with options</li>
+                  <li><i class="fa fa-check color-default" aria-hidden="true"></i>Easy to use Fusion Builder to create pages</li>
+                </ul>
+                <!-- /.ul -->
+              </div>
+              <!-- /.one-half -->
+            </div>
+          </div>
+          <!-- /.content-tab -->
+        </div>
+        <!-- /.tab-about style1 -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+
+<section class="flat-row flat-iconbox">
+  <div class="container">
+    <div class="row">
+      <% 3.times do |i| %>
+      <div class="col-md-4">
+        <%= image_tag @lecture.image1.url %>
+      </div>
+      <% end %>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<div class="container">
+  <div class="dividers custom-black">
+    <h2>REVIEW</h2>
+    <br>
+    <div class="form-sign-in">
+      <%= form_for Comment.new, url: comments_path do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :lecture_id, value: @lecture.id %>
+        <div>
+          <div class="form-box">
+            <%= f.text_area :body %>
+          </div>
+          <br>
+          <div class="btn-submit">
+            <%= f.button "댓글등록", class: "bg-black registe" %>
+          </div>
+        </div>
+      <!-- </form> -->
+      <% end %>
+    </div>
+  </div>
+
+
+  <% @comments.each do |comment| %>
+  <div class="dividers default">
+    <% user = User.find(comment.user_id) %>
+    <h6><%= user.email %></h6>
+    <p><%= comment.body %></p>
+  </div>
+  <% end %>
+
+  <%= paginate @comments %>
+
+</div>

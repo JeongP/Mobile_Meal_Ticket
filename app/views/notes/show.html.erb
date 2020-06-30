@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <br>
+  <div class="post-title">
+    <h2>
+      <a href="#" title=""><%= @note.title %></a>
+    </h2>
+  </div>
+  <br>
+  <div class="content-post">
+    <p>
+      <textarea name="name" rows="8" cols="80" style="height: 200px;">
+        <%= @note.content %>
+      </textarea>
+    </p>
+  </div>
+  <br>
+  <%= link_to '수정', edit_note_path(@note) %> |
+  <%= link_to '뒤로가기', notes_path %> |
+  <%= link_to '삭제', note_path(@note), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+
+

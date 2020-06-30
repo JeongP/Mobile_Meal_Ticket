@@ -1,0 +1,45 @@
+<!-- 헤더 바 메뉴들 -->
+<ul class="flat-unstyled float-right">
+  <!-- <li class="money">
+    <a href="#" title="">USD<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+    <ul class="unstyled border-radius-5 box-shadow">
+      <li><a href="#" title="">GBP</a></li>
+      <li><a href="#" title="">Euro</a></li>
+    </ul>
+  </li> -->
+<%# if Tutor.find_by user_id: current_user.id %>
+<% if user_signed_in? and current_user.tutor %>
+  <li class="login">
+    <a href="/lectures/new.html">수업등록</a>
+  </li>
+<% else %>
+  <li class="login">
+    <a href="/tutors/new.html">튜터등록</a>
+  </li>
+<% end %>
+
+  <li class="login">
+    <a href="<%= lectures_path %>">수업보기</a>
+  </li>
+  <% if user_signed_in? %>
+  <li class="login">
+     <%= link_to "마이페이지", "/home/mypage.html" %>
+  </li>
+  <li class="login">
+    <!-- <a href="#" title="">Login<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+    <ul class="unstyled border-radius-5 box-shadow">
+      <li><a href="#" title="">Sign in</a></li>
+      <li><a href="#" title="">Register</a></li>
+    </ul> -->
+
+    <%= link_to "로그아웃", destroy_user_session_path, method: :delete %>
+  </li>
+  <% else %>
+  <li class="login">
+     <%= link_to "로그인", new_user_session_path %>
+  </li>
+  <li class="login">
+    <%= link_to "회원가입", new_user_registration_path %>
+  </li>
+  <% end %>
+</ul>

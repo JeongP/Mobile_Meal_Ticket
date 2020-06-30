@@ -1,0 +1,66 @@
+<section class="flat-signin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="wrap-sign-in center">
+          <h4>수업 등록</h4>
+          <div class="form-sign-in">
+            <%= form_for @lecture, url: {action: "create"} do |f| %>
+              <%= f.hidden_field :tutor_id, value: current_user.tutor.id %>
+              <div>
+                <div class="form-box">
+                  <%= f.label :title, "수업제목" %>
+                  <%= f.text_field :title %>
+                </div>
+                <div class="form-box">
+                  <%= f.label :image1, "대표사진" %>
+                  <%= f.file_field :image1 %>
+                </div>
+                <div class="form-box">
+                  <%= f.label :category, "수업카테고리" %>
+                  <%= f.select :category, {"보컬1": "보컬", "코딩1": "코딩" }, {}, class: "form-control" %>
+                </div>
+                <div class="form-box">
+                  <%= f.label :price, "수업1회당 가격" %>
+                  <%= f.text_field :price %>
+                </div>
+                <div class="form-box">
+                  <%= f.label :contents, "수업내용" %>
+                  <%= f.text_area :contents %>
+                </div>
+                
+                <div class="form-box">
+                  <%= f.label :possible_time, "수업가능시간" %>
+                  <%= f.select :possible_time, { "19:00~20:00": 19, "20:00~21:00": 20, "21:00~22:00": 21 }, {}, class: "form-control" %>
+                </div>
+
+                <div class="form-box">
+                  <%= f.label :class_date, "수업가능날짜" %>
+                  <%= f.text_field :class_date %>
+                </div>
+                <div class="form-box">
+                  <%= f.label :total_class_num, "전체수업횟수" %>
+                  <%= f.text_field :total_class_num %>
+                </div>
+                
+                <div class="form-box">
+                  <%= f.label :location, "장소" %>
+                  <%= f.select :location, Lecture.locations.keys, {}, class: "form-control" %>
+                </div>
+                <div class="btn-submit">
+                  <%= f.button "등록완료", class: "bg-black registe" %>
+                </div>
+              </div>
+            <!-- </form> -->
+            <% end %>
+          </div>
+          <!-- /.form-sign-in -->
+        </div>
+        <!-- /.wrap-sign-in -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>

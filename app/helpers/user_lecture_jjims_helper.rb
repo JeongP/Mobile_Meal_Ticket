@@ -1,0 +1,2 @@
+module UserLectureJjimsHelper
+end

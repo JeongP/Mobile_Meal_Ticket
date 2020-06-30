@@ -1,0 +1,2 @@
+module UserLectureListensHelper
+end

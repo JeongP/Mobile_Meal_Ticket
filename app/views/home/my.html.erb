@@ -1,0 +1,139 @@
+<div class="container wrap-product">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="sort-product style3">
+        <ul class="tab-product-list float-left">
+          <li class="active">사용가능한 식권</li>
+          <li>사용한 식권</li>
+          <li>내가 찜한 수업</li>
+        </ul>
+        <div class="filter float-right">
+          <div class="btn-loadmore center">
+            <%= link_to "회원정보수정",  edit_user_registration_path, class:"base bg-black color-white center"  %>
+            <!-- <a href="#" class="base bg-black color-white center" title="">회원정보수정</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-md-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="tab-product-content">
+    <div class="row first">
+      <% @lectures_listen.each do |lec| %>
+      <div class="col-md-4 item-loadmore">
+        <div class="imagebox style1">
+          <div class="imagebox-header">
+            <%= image_tag lec.image1.url %>
+            <!-- <img src="/images/shop/01.jpg" alt=""> -->
+            <!-- <div class="add-cart">
+              <a href="#" class="shop-cart" title=""><span class="icon_cart_alt"></span></a>
+              <a href="#" class="like" title=""><span class="icon_heart_alt"></span></a>
+            </div> -->
+            <div class="view center">
+              <%= link_to "QUICK VIEW", lecture_path(lec), class: "bg-black color-white" %>
+            </div>
+          </div>
+          <!-- /.imagebox-header -->
+          <div class="imagebox-content center">
+            <div class="name">
+              수업제목 : <%= link_to lec.title, lecture_path(lec)%>
+            </div>
+            <div class="price">
+              가격 : <%= link_to lec.price, lecture_path(lec) %> 원
+            </div>
+            <div class="name">
+
+              <%= link_to "[신청취소]", user_lecture_listen_path(lec), method: :delete, data: {confirm: "정말 수강신청을 취소하시겠습니까?"} if current_user.listen?(lec) %>
+
+              <%= link_to "[수업삭제]", lecture_path(lec), method: :delete, data: {confirm: "정말 폐강하시겠습니까?"} if current_user.made?(lec) %>
+
+            </div>
+          </div>
+          <!-- /.imagebox-content -->
+        </div>
+        <!-- /.imagebox style1 -->
+      </div>
+      <% end %>
+      <!-- /.col-md-4 item-loadmore -->
+      <!-- <div class="col-md-12">
+        <div class="btn-loadmore center">
+          <a href="#" class="base bg-black color-white center" title="">LOADMORE</a>
+        </div>
+      </div> -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <% @lectures_made.each do |lec| %>
+      <div class="col-md-4 item-loadmore">
+        <div class="imagebox style1">
+          <div class="imagebox-header">
+            <%= image_tag lec.image1.url %>
+            <!-- <img src="/images/shop/03.jpg" alt=""> -->
+            <div class="view center">
+              <%= link_to "QUICK VIEW", lecture_path(lec), class: "bg-black color-white" %>
+            </div>
+          </div>
+          <!-- /.imagebox-header -->
+          <div class="imagebox-content center">
+            <div class="name">
+              수업제목 : <%= link_to lec.title, lecture_path(lec) %>
+            </div>
+            <div class="price">
+              가격 : <%= link_to lec.price, lecture_path(lec) %> 원
+            </div>
+            <div class="name">
+              <%= link_to "[수업삭제]", lecture_path(lec), method: :delete, data: {confirm: "정말 폐강하시겠습니까?"} %>
+            </div>
+          </div>
+          <!-- /.imagebox-content -->
+        </div>
+        <!-- /.imagebox style1 -->
+      </div>
+      <% end %>
+      <!-- /.col-md-4 item-loadmore -->
+      <!-- <div class="col-md-12">
+        <div class="btn-loadmore center">
+          <a href="#" class="base bg-black color-white center" title="">LOADMORE</a>
+        </div>
+      </div> -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <% @lectures_pick.each do |lec| %>
+      <div class="col-md-4 item-loadmore">
+        <div class="imagebox style1">
+          <div class="imagebox-header">
+            <%= image_tag lec.image1.url %>
+            <!-- <img src="/images/shop/03.jpg" alt=""> -->
+            <div class="view center">
+              <%= link_to "QUICK VIEW", lecture_path(lec), class: "bg-black color-white" %>
+            </div>
+          </div>
+          <!-- /.imagebox-header -->
+          <div class="imagebox-content center">
+            <div class="name">
+              수업제목 : <%= link_to lec.title, lecture_path(lec)%>
+            </div>
+            <div class="price">
+              가격 : <%= link_to lec.price, lecture_path(lec) %> 원
+            </div>
+            <div class="name">
+              <%= link_to "[찜 삭제]", user_lecture_jjim_path(lec), method: :delete, data: {confirm: "정말로 삭제하시겠습니까?"} %>
+            </div>
+          </div>
+          <!-- /.imagebox-content -->
+        </div>
+        <!-- /.imagebox style1 -->
+      </div>
+      <% end %>
+      <!-- /.col-md-4 item-loadmore -->
+      <!-- <div class="col-md-12">
+        <div class="btn-loadmore center">
+          <a href="#" class="base bg-black color-white center" title="">LOADMORE</a>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <!-- /.tab-product-content -->
+</div>

@@ -1,0 +1,139 @@
+<% @lectures.sample(1).each do |lec| %>
+<a href="<%= lecture_path(lec) %>">
+  <section class="page-title parallax parallax1" style="background-image: url(<%= lec.image1.url %>)">
+    <div class="title-heading">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box-title">
+              <h1 style="color: #FAECC5">
+                Today's HOT Class
+              </h1>
+              <div class="breadcrumbs">
+                <ul>
+                  <li><a href="/index.html" title="">Home</a><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                  <li><a href="/element.html" title="">Element</a><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                  <li><a href="#" title="">Blog 1st Full Grid Full Layout</a></li>
+                </ul>
+              </div>
+              <!-- /.breadcrumbs -->
+            </div>
+            <!-- /.box-title -->
+          </div>
+          <!-- /.col-md-12 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.title-heading -->
+    <div class="overlay-black"></div>
+  </section>
+</a>
+<% end %>
+<!-- /.page-title parallax -->
+<section id="main-blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="wrap-post">
+          <div class="grid three style1">
+            <% @lectures.all.each do |lec| %>
+            <article class="blog-post">
+              <div class="featured-post">
+                <a href="<%= lecture_path(lec) %>" title="14 Signs You're Not Drinking Enough Water">
+                  <%= image_tag lec.image1.url %>
+                  <!-- <img src="/images/blogs/07.jpg" alt=""> -->
+                </a>
+              </div>
+              <!-- /.featured-post -->
+              <div class="entry-post-title">
+                <div class="top-post">
+                  <%= lec.category %>
+                </div>
+                <div class="post-title">
+                  <h2>
+                    <%= lec.title %>
+                    <!-- <a href="#" title="">14 Signs You're Not Drinking Water</a> -->
+                  </h2>
+                </div>
+                <div class="post-date">
+                  <%= lec.class_date %>요일 <%= lec.possible_time %>시 <br>
+                  시간 당 가격: <%= lec.price %>
+                  <!-- October 7, 2017 -->
+                </div>
+              </div>
+              <!-- /.entry-post-title -->
+            </article>
+            <!-- /.blog-post -->
+            <% end %>
+          </div>
+          <!-- /.grid-two -->
+        </div>
+        <!-- /.wrap-post -->
+        <%#= paginate @lectures %>
+        <div class="blog-pagination">
+          <ul class="flat-pagination">
+            <% if @lectures.first_page? %>
+              <li class="older">
+                <%= link_to_next_page @lectures, 'Next Page' %>
+                <!-- OLDER POSTS -->
+              </li>
+            <% elsif @lectures.last_page? %>
+              <li class="newer">
+                <%= link_to_prev_page @lectures, 'Previous Page' %>
+                <!-- NEWER POSTS -->
+              </li>
+            <% else %>
+              <li class="newer">
+                <%= link_to_prev_page @lectures, 'Previous Page' %>
+                <!-- NEWER POSTS -->
+              </li>
+              <li class="older">
+                <%= link_to_next_page @lectures, 'Next Page' %>
+                <!-- OLDER POSTS -->
+              </li>
+            <% end %>
+
+          </ul>
+        </div>
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /#main-blog -->
+<section class="flat-partner background">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="owl-carousel">
+          <li>
+            <img src="/images/partner/01.png" alt="">
+          </li>
+          <li>
+            <img src="/images/partner/02.png" alt="">
+          </li>
+          <li>
+            <img src="/images/partner/03.png" alt="">
+          </li>
+          <li>
+            <img src="/images/partner/04.png" alt="">
+          </li>
+          <li>
+            <img src="/images/partner/05.png" alt="">
+          </li>
+          <li>
+            <img src="/images/partner/06.png" alt="">
+          </li>
+        </ul>
+        <!-- /.owl-carousel -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>

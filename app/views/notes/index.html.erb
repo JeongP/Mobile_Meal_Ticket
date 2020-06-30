@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="widget widget-news">
+    <div class="widget-title">
+      <h3>자유게시판</h3>
+    </div>
+    <br>
+    <%= link_to '글쓰기', new_note_path %>
+    <br><hr>
+    <div class="widget-content">
+      <ul>
+        <% @notes.each do |note| %>
+        <% user = User.find_by(id: note.user_id) %>
+        <li>
+          <a href="<%= note_path(note) %>" title=""><%= note.title %></a><br>
+          <p class="date" style="color: #555555" onclick="location.href='<%= note_path(note) %>'"><%= user.username %></p>
+          <p class="date" onclick="location.href='<%= note_path(note) %>'"><%= note.content %></p>
+        </li>
+        <% end %>
+        <br>
+        
+
+        <!-- <li>
+          <a href="#" title="">In order to succeed, we must first believe that we can.</a>
+          <p class="date">October 7, 2017</p>
+        </li>
+        <li>
+          <a href="#" title="">The way to get started is to quit talking and begin doing.</a>
+          <p class="date">October 7, 2017</p>
+        </li>
+        <li>
+          <a href="#" title="">In order to succeed, we must first believe that we can.</a>
+          <p class="date">October 7, 2017</p>
+        </li>
+        <li>
+          <a href="#" title="">The way to get started is to quit talking and begin doing.</a>
+          <p class="date">October 7, 2017</p>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+

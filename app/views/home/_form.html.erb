@@ -1,0 +1,42 @@
+<section class="flat-contact-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-contact-form padding-contact">
+          <!-- <form id="contactform" action="./contact/contact-process.php" method="post" accept-charset="utf-8">
+            <div class="contact-form-name contact-form">
+              <input type="text" name="name" id="name" placeholder="Name |" required=""/>
+            </div>
+            <div class="contact-form-email contact-form">
+              <input type="text" name="email" id="email" placeholder="Email" required=""/>
+            </div>
+            <div class="contact-form-url contact-form">
+              <input type="text" name="url" id="url" placeholder="Website" required=""/>
+            </div>
+            <div class="contact-form-comment contact-form">
+              <textarea name="message" id="message" placeholder="Messages" required=""></textarea>
+            </div>
+            <div class="btn-contact-form center">
+              <button type="submit" class="flat-button-form">SEND MESSAGES</button>
+            </div>
+          </form> -->
+
+          <!-- 이름 설명 가격 이미지 버튼  -->
+          <%= form_for Item.new, id:"contactform" do |f| %>
+            <%= f.text_field :name, placeholder: "빵 이름 |" %>
+            <%= f.text_area :desc, placeholder: "빵 설명 |" %>
+            <%= f.text_field :price, placeholder: "가격 |" %>
+            <%= f.file_field :image %>
+            <%= f.button "작성 완료", name: :commit, class: "flat-button-form" %>
+          <% end %>
+
+          <!-- /form -->
+        </div>
+        <!-- /.form-contact-form -->
+      </div>
+      <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+<!-- /.container -->
+</section>

@@ -1,0 +1,76 @@
+<section class="flat-tabs style1">
+  <div class="container">
+    <div class="tab-about style2 v1">
+      <!-- solution 1 -->
+      <!-- <div id="bcTarget"></div> -->
+      <!-- <input type="button" onclick='$("#bcTarget").barcode("1234567890128", "ean13",{barWidth:2, barHeight:30});' value="ean13"> -->
+      <!-- <input type="button" onclick='barcode_generate()' value="ean13"> -->
+
+      <!-- solution2 -->
+      <div id="bcTarget1" style="margin-top:30px;"></div>
+      <div id="bcTarget2" style="margin-top:30px;"></div>
+      <div id="bcTarget3" style="margin-top:30px;"></div>
+      <div id="bcTarget4" style="margin-top:30px;"></div>
+      <div id="bcTarget5" style="margin-top:30px;"></div>
+      <button class="line-black supper border-radius-30" onclick="btn_js_confirm_click();">식권 사용</button>
+    </div>
+  </div>
+
+</section>
+
+<script type="text/javascript">
+  function btn_js_confirm_click(){
+    // 식권이 있는 경우
+    if('<%= @ticket.count %>') {
+      var check = confirm("식권 사용 후에는 식권이 사용처리되어 더이상 쓸 수 없습니다.");
+      if(check) {
+        alert("식권을 사용했습니다.");
+        '<% used_ticket = Buying.where(user_id: current_user.id, shop_id: @ticket.last.shop_id, use: true).last %>'
+        '<% used_ticket.update(use: false) %>'
+        '<% used_ticket.save %>'
+        location.href = '/home/ticket';
+      }
+      else {
+        alert("취소했습니다.");
+        location.href = '/home/ticket';
+      }
+    // 식권이 없는 경우
+    }else{
+      alert("식권이 없습니다.");
+      location.href = '/home/ticket';
+    }
+
+
+
+
+  }
+
+</script>
+
+<!-- solution1 -->
+<!-- <script type="text/javascript">
+  function barcode_generate() {
+    $("#bcTarget").barcode("1234567890128", "ean13");
+
+    //    ���ڵ� Ÿ��
+    //    codabar
+    //    code11 (code 11)
+    //    code39 (code 39)
+    //    code93 (code 93)
+    //    code128 (code 128)
+    //    ean8 (ean 8)
+    //    ean13 (ean 13)
+    //    std25 (standard 2 of 5 - industrial 2 of 5)
+    //    int25 (interleaved 2 of 5)
+    //    msi
+    //    datamatrix (ASCII + extended)
+  }
+</script> -->
+
+<script type="text/javascript">
+	$("#bcTarget1").barcode("1234567890128", "code128");
+	$("#bcTarget2").barcode("1234567890128", "ean13",{barWidth:2, barHeight:30});
+	$("#bcTarget3").barcode("1234567", "int25",{barWidth:2, barHeight:30});
+	$("#bcTarget4").barcode("1234567890128", "code128",{barWidth:1, barHeight:70,showHRI:true,bgColor:"red"});
+	$("#bcTarget5").barcode("1234567890128", "datamatrix",{showHRI:false,bgColor:"yellow"});
+</script>

@@ -1,0 +1,134 @@
+<section id="header" class="header style3">
+        <div class="container-fluid">
+          <div id="logo" class="logo float-left">
+            <a href="/home/index.html" title="Yolo">
+              HongSik
+            </a>
+          </div>
+          <!-- /.logo -->
+          <div class="menu-extra">
+            <% if user_signed_in? %>
+              <%= link_to "로그아웃", destroy_user_session_path, method: :delete %> &nbsp;
+              <%= link_to "마이페이지", "/home/index.html" %>
+            <% else %>
+              <%= link_to "로그인", new_user_session_path %> &nbsp;
+              <%= link_to "회원가입", new_user_registration_path %>
+            <% end %>
+            <div class="box-search">
+              <span class="icon_search"></span>
+              <form action="#" method="get" accept-charset="utf-8">
+                <div class="input-search">
+                  <input type="text" name="search" placeholder="|Enter Your Search...">
+                  <span class="ti-close delete"></span>
+                </div>
+              </form>
+            </div>
+            <!-- <div class="box-wishlist">
+              <a href="<%= user_items_path %>" title=""><span class=" icon_heart_alt"></span></a>
+            </div>
+            <div class="box-cart">
+              <span class="icon_bag_alt"><i class="numb-cart">2</i></span>
+              <div class="subcart">
+                <ul class="product-choose">
+                  <li class="overflow">
+                    <div class="img-product float-left">
+                      <img src="/images/shop/s-01.jpg" alt="">
+                    </div>
+                    <div class="info-product float-left overflow">
+                      <div class="price">
+                        $60.00 x <span>1</span>
+                      </div>
+                      <div class="name">
+                        <a href="#" title="">Kabino Bedside Table</a>
+                      </div>
+                    </div>
+                    <div class="delete">
+                      <img src="/images/shop/delete.png" alt="">
+                    </div>
+                  </li>
+                  <li class="overflow">
+                    <div class="img-product float-left">
+                      <img src="/images/shop/s-02.jpg" alt="">
+                    </div>
+                    <div class="info-product float-left overflow">
+                      <div class="price">
+                        $80.00 x <span>1</span>
+                      </div>
+                      <div class="name">
+                        <a href="#" title="">Kabino Bedside Table</a>
+                      </div>
+                    </div>
+                    <div class="delete">
+                      <img src="/images/shop/delete.png" alt="">
+                    </div>
+                  </li>
+                </ul>
+                <div class="total-cart overflow">
+                  <p class="float-left">TOTAL:</p>
+                  <p class="float-right">$460.00</p>
+                </div>
+                <div class="btn-cart">
+                  <a href="#" class="view-cart" title="">VIEW CARD</a>
+                  <a href="#" class="check-out" title="">CHECK OUT</a>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!-- /.icon-header -->
+          <!-- 헤더 바 메뉴들 -->
+          <!-- 헤더 바 메뉴들 -->
+          <ul class="flat-unstyled float-right">
+            <!-- <li class="money">
+              <a href="#" title="">USD<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+              <ul class="unstyled border-radius-5 box-shadow">
+                <li><a href="#" title="">GBP</a></li>
+                <li><a href="#" title="">Euro</a></li>
+              </ul>
+            </li> -->
+          <%# if Tutor.find_by user_id: current_user.id %>
+          <% if user_signed_in? and current_user.tutor %>
+            <li class="login">
+              <a href="/lectures/new.html">수업등록</a>
+            </li>
+          <% else %>
+            <li class="login">
+              <a href="/tutors/new.html">튜터등록</a>
+            </li>
+          <% end %>
+
+            <li class="login">
+              <a href="<%= lectures_path %>">수업보기</a>
+            </li>
+            <% if user_signed_in? %>
+            <li class="login">
+               <%= link_to "마이페이지", "/home/mypage.html" %>
+            </li>
+            <li class="login">
+              <!-- <a href="#" title="">Login<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+              <ul class="unstyled border-radius-5 box-shadow">
+                <li><a href="#" title="">Sign in</a></li>
+                <li><a href="#" title="">Register</a></li>
+              </ul> -->
+
+              <%= link_to "로그아웃", destroy_user_session_path, method: :delete %>
+            </li>
+            <% else %>
+            <li class="login">
+               <%= link_to "로그인", new_user_session_path %>
+            </li>
+            <li class="login">
+              <%= link_to "회원가입", new_user_registration_path %>
+            </li>
+            <% end %>
+          </ul>
+
+          <!-- 헤더 바 메뉴들 -->
+
+
+          <!-- /.flat-infomation float-right -->
+          <!-- /shared/_nav_wrap_form -->
+          <!-- /.nav-wrap -->
+          <div class="clearfix"></div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
